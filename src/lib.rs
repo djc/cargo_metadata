@@ -699,6 +699,26 @@ impl From<&str> for TargetKind {
     }
 }
 
+impl AsRef<str> for TargetKind {
+    fn as_ref(&self) -> &str {
+        use TargetKind::*;
+        match self {
+            Bench => "bench",
+            Bin => "bin",
+            CustomBuild => "custom-build",
+            CDyLib => "cdylib",
+            DyLib => "dylib",
+            Example => "example",
+            Lib => "lib",
+            ProcMacro => "proc-macro",
+            RLib => "rlib",
+            StaticLib => "staticlib",
+            Test => "test",
+            Unknown(x) => x,
+        }
+    }
+}
+
 /// Similar to `kind`, but only reports the
 /// [Cargo crate types](https://doc.rust-lang.org/cargo/reference/cargo-targets.html#the-crate-type-field):
 /// `bin`, `lib`, `rlib`, `dylib`, `cdylib`, `staticlib`, `proc-macro`.
